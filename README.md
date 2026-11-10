@@ -9,6 +9,8 @@ Google Drive の演習資料（問題・授業ノート・解答例）をもと�
 - 進捗: ブラウザの localStorage（JSON でバックアップ・復元可能）
 - デプロイ: Vercel（Hobby）想定。API キーはサーバー側（Route Handler）だけが保持します。
 
+**公開 URL**: https://programming-practice-lemon.vercel.app
+
 ## 収録内容
 
 | セクション | 内容 | 問題数 |
