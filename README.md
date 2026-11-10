@@ -4,7 +4,7 @@ Google Drive の演習資料（問題・授業ノート・解答例）をもと�
 問題一覧／ランダム出題から選んでコードを書き、**Sarashina API** が正誤と間違いの解説を返します。
 
 - フレームワーク: Next.js 15（App Router）+ TypeScript + Tailwind CSS
-- エディタ: CodeMirror 6
+- エディタ: CodeMirror 6（`\` は教科書に合わせて円マーク `¥` で表示。保存・判定は半角の `\` のまま）
 - 判定: Sarashina API（`sarashina3-mini` / `sarashina3-nano`）
 - 進捗: ブラウザの localStorage（JSON でバックアップ・復元可能）
 - デプロイ: Vercel（Hobby）想定。API キーはサーバー側（Route Handler）だけが保持します。
