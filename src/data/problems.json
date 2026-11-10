@@ -1,0 +1,785 @@
+[
+  {
+    "id": "ex-1-1",
+    "section": "1.1",
+    "kind": "example",
+    "label": "例題 1.1",
+    "title": "文字を表示する",
+    "statement": "徳川家康を画面に表示するプログラムを作りなさい。",
+    "inputSpec": null,
+    "sampleInput": null,
+    "expected": [
+      "徳川　家康"
+    ],
+    "figure": null,
+    "hints": [
+      "文字を表示するには printf を使います。",
+      "printf(\"表示したい文字\\n\"); のように、ダブルクォートで囲み、最後にセミコロン ; を付けます。",
+      "日本語もそのまま書けます。"
+    ],
+    "checkpoints": [
+      "printf で文字列を表示している",
+      "画面に「徳川家康」が表示される（間の全角スペースの有無は問わない）",
+      "return 0; でプログラムを終了している"
+    ],
+    "commonMistakes": [
+      "セミコロン ; の付け忘れ",
+      "printf のダブルクォートの閉じ忘れ",
+      "全角の「；」や「”」を入力してしまう"
+    ],
+    "notes": [
+      "3. Cプログラムの基本構造"
+    ],
+    "references": [
+      {
+        "filename": "r1-1.c",
+        "code": "#include <stdio.h>\nint main(void)\n{\n\tprintf(\"徳川　家康\\n\");\n\treturn 0;\n}"
+      }
+    ]
+  },
+  {
+    "id": "k-1-1a",
+    "section": "1.1",
+    "kind": "task",
+    "label": "課題 1.1.a",
+    "title": "アルファベットと花の名前",
+    "statement": "次の文字列を画面に表示するプログラムを作りなさい。\n1. abcdefghijklmnopqrstuvwxyz\n2. あなたの好きな花の名前\n\n※1つのプログラムで2行表示しても、2つのプログラムに分けて作ってもかまいません。",
+    "inputSpec": null,
+    "sampleInput": null,
+    "expected": [
+      "abcdefghijklmnopqrstuvwxyz",
+      "（あなたの好きな花の名前。例：ひまわり）"
+    ],
+    "figure": null,
+    "hints": [
+      "1行目は printf(\"abcdefghijklmnopqrstuvwxyz\\n\"); で表示できます。",
+      "2行目は好きな花の名前に置きかえてください。",
+      "1つの printf の中で \\n を使って2行にしても、printf を2つ並べてもどちらでもOKです。"
+    ],
+    "checkpoints": [
+      "アルファベット26文字が正しい順で表示される",
+      "好きな花の名前が表示される",
+      "改行 \\n を使って2行になっている（2つのプログラムに分けた場合は不要）"
+    ],
+    "commonMistakes": [
+      "アルファベットのつづり間違い（26文字あるか確認）",
+      "「あなたの好きな花の名前」という文章をそのまま表示してしまう（実際の花の名前に置きかえる）"
+    ],
+    "notes": [
+      "3. Cプログラムの基本構造"
+    ],
+    "references": [
+      {
+        "filename": "k1-1a-1.c",
+        "code": "#include <stdio.h>\nint main(void)\n{\n\tprintf(\"abcdefghijklmnopqrstuvwxyz\\n\");\n\treturn 0;\n}"
+      },
+      {
+        "filename": "k1-1a-2.c",
+        "code": "#include <stdio.h>\nint main(void)\n{\n\tprintf(\"あなたの好きなお花の名前\\n\");\n\treturn 0;\n}"
+      }
+    ]
+  },
+  {
+    "id": "k-1-1b",
+    "section": "1.1",
+    "kind": "task",
+    "label": "課題 1.1.b",
+    "title": "星の模様",
+    "statement": "下のような模様（* が並んだ星の模様）を画面に表示するプログラムを作りなさい。\n\n※問題PDFには図が無いため、解答例（k1-1b.c）の模様を図として掲載しています。",
+    "inputSpec": null,
+    "sampleInput": null,
+    "expected": [
+      "*****     *****     *****     *****     *****",
+      "*****     *****     *****     *****     *****",
+      "     *****     *****     *****     *****     ",
+      "     *****     *****     *****     *****     ",
+      "*****     *****     *****     *****     *****",
+      "*****     *****     *****     *****     *****",
+      "     *****     *****     *****     *****     ",
+      "     *****     *****     *****     *****     "
+    ],
+    "figure": "star",
+    "hints": [
+      "1つの printf の中で \\n を使うと、何行もまとめて表示できます。",
+      "* と 空白 の数を数えて、同じ並びになるようにしましょう。",
+      "行末の空白は無くてもかまいません。"
+    ],
+    "checkpoints": [
+      "8行の模様が表示される",
+      "* の塊（5文字）と空白の並びが交互になっている",
+      "\\n を使って改行している"
+    ],
+    "commonMistakes": [
+      "\\n を文字列の最後に1つしか書かず、1行しか表示されない",
+      "全角の「＊」や全角スペースを入力してしまう",
+      "行によって * の数がずれている"
+    ],
+    "notes": [
+      "3. Cプログラムの基本構造"
+    ],
+    "references": [
+      {
+        "filename": "k1-1b.c",
+        "code": "#include <stdio.h>\nint main(void)\n{\n\tprintf(\"*****     *****     *****     *****     *****\\n*****     *****     *****     *****     *****\\n     *****     *****     *****     *****     \\n     *****     *****     *****     *****     \\n*****     *****     *****     *****     *****\\n*****     *****     *****     *****     *****\\n     *****     *****     *****     *****     \\n     *****     *****     *****     *****     \\n\");\n\treturn 0;\n}\t"
+      }
+    ]
+  },
+  {
+    "id": "k-1-1c",
+    "section": "1.1",
+    "kind": "task",
+    "label": "課題 1.1.c",
+    "title": "好きなものを表示する（自由課題）",
+    "statement": "あなたの好きなもの、例えば、バイクとか友達の顔とかを画面に表示するプログラムを作りなさい。",
+    "inputSpec": null,
+    "sampleInput": null,
+    "expected": [],
+    "figure": null,
+    "hints": [
+      "文字だけで表現しても、* や記号を組み合わせて絵にしてもOKです。",
+      "複数行にすると表現の幅が広がります。"
+    ],
+    "checkpoints": [
+      "printf で表示している",
+      "自分が表現したいものが画面に出ている（内容は自由）"
+    ],
+    "commonMistakes": [
+      "\\n を忘れて1行に全部つながってしまう",
+      "全角記号でコードが崩れる"
+    ],
+    "notes": [
+      "3. Cプログラムの基本構造"
+    ],
+    "references": []
+  },
+  {
+    "id": "ex-1-2",
+    "section": "1.2",
+    "kind": "example",
+    "label": "例題 1.2",
+    "title": "梨と林檎の総額",
+    "statement": "梨と林檎を買いに果物屋に行った。梨は1個50円で、りんごは1個190円であった。買った梨の個数と林檎の個数を入力し、総額を計算するプログラムを作りなさい。",
+    "inputSpec": "梨の個数 林檎の個数（整数2つを空白で区切る）",
+    "sampleInput": "3 2",
+    "expected": [
+      "梨 = 3 個",
+      "林檎 = 2 個",
+      "総額 = 530 円"
+    ],
+    "figure": null,
+    "hints": [
+      "int で変数を3つ宣言します（梨・林檎・総額）。",
+      "scanf(\"%d%d\", &nasi, &ringo); で2つの整数を読み取ります。",
+      "s = 50 * nasi + 190 * ringo; で総額を計算し、printf で表示します。"
+    ],
+    "checkpoints": [
+      "int で変数を宣言している",
+      "scanf の引数に & を付けている（&nasi, &ringo）",
+      "50 * 梨 + 190 * 林檎 で総額を計算している",
+      "総額を printf で表示している"
+    ],
+    "commonMistakes": [
+      "scanf の変数の前に & を付け忘れる",
+      "scanf で %f を使ってしまう（整数は %d）",
+      "計算式の優先順位を間違える"
+    ],
+    "notes": [
+      "2. 変数の宣言",
+      "4. scanf と代入"
+    ],
+    "references": [
+      {
+        "filename": "r1-2.c",
+        "code": "#include <stdio.h>\nint main(void)\n{\n\tint nasi,ringo,s;\n\n\tscanf(\"%d%d\",&nasi,&ringo);\n\ts=50*nasi+190*ringo;\n\tprintf(\"梨　=%4d 個\\n\",nasi);\n\tprintf(\"林檎　=%4d 個\\n\",ringo);\n\tprintf(\"総額　=%4d 円\\n\",s);\n\n\treturn 0;\n}"
+      }
+    ]
+  },
+  {
+    "id": "k-1-2a",
+    "section": "1.2",
+    "kind": "task",
+    "label": "課題 1.2.a",
+    "title": "秋刀魚・鯖・蟹の総額",
+    "statement": "秋刀魚（さんま）と鯖（さば）と蟹（かに）を買いに魚屋に行った。秋刀魚は1匹120円、鯖は1匹230円、蟹は1匹210円であった。買った秋刀魚の匹数、鯖の匹数、蟹の匹数を入力し、総額を計算するプログラムを作りなさい。",
+    "inputSpec": "秋刀魚の匹数 鯖の匹数 蟹の匹数（整数3つを空白で区切る）",
+    "sampleInput": "3 2 1",
+    "expected": [
+      "秋刀魚 = 3 匹",
+      "鯖 = 2 匹",
+      "蟹 = 1 匹",
+      "総額 = 1030 円"
+    ],
+    "figure": null,
+    "hints": [
+      "scanf(\"%d%d%d\", &sanma, &saba, &kani); で3つ読み取ります。",
+      "s = 120 * sanma + 230 * saba + 210 * kani; で総額を求めます。",
+      "表示の桁そろえに %4d などを使うと見やすくなります（必須ではありません）。"
+    ],
+    "checkpoints": [
+      "scanf で整数3つを読み取っている",
+      "120・230・210 の単価が正しく使われている",
+      "総額（3匹・2匹・1匹なら1030円）を表示している"
+    ],
+    "commonMistakes": [
+      "単価の数字を間違える（120/230/210）",
+      "3つ目の変数に & を付け忘れる",
+      "総額の計算で掛け算の順序を間違える"
+    ],
+    "notes": [
+      "2. 変数の宣言",
+      "4. scanf と代入"
+    ],
+    "references": [
+      {
+        "filename": "k1-2a.c",
+        "code": "#include <stdio.h>\nint main(void)\n{\n\tint sanma,saba,kani,s;\n\n\tscanf(\"%d%d%d\",&sanma,&saba,&kani);\n\ts=120*sanma+230*saba+210*kani;\n\tprintf(\"秋刀魚\\t=%4d 匹 \\n\",sanma);\n\tprintf(\"鯖\\t=%4d 匹 \\n\",saba);\n\tprintf(\"蟹\\t=%4d 匹 \\n\",kani);\n\tprintf(\"総額\\t=%4d 円 \\n\",s);\n\n\treturn 0;\n}"
+      }
+    ]
+  },
+  {
+    "id": "k-1-2b",
+    "section": "1.2",
+    "kind": "task",
+    "label": "課題 1.2.b",
+    "title": "参加できない人数",
+    "statement": "1クラスの人数が a 人であるとき、野球（9人）を b チーム、バレー（6人）を c チーム編成すれば何人が参加できないかを計算するプログラムを作りなさい。",
+    "inputSpec": "クラスの人数 a 野球のチーム数 b バレーのチーム数 c（整数3つ）",
+    "sampleInput": "40 2 1",
+    "expected": [
+      "クラスの人数 = 40 人",
+      "野球のチーム数 = 2 チーム",
+      "バレーのチーム数 = 1 チーム",
+      "参加できない人数 = 16 人"
+    ],
+    "figure": null,
+    "hints": [
+      "野球は 9 人 × b チーム、バレーは 6 人 × c チームを使います。",
+      "参加できない人数 = a - 9*b - 6*c です。",
+      "計算結果がマイナスになっていないか、電卓で確かめましょう。"
+    ],
+    "checkpoints": [
+      "3つの整数を入力している",
+      "9*b と 6*c を引く式になっている",
+      "参加できない人数（40,2,1 なら16人）を表示している"
+    ],
+    "commonMistakes": [
+      "9 と 6 を逆にする",
+      "掛け算を足し算にしてしまう",
+      "a から引く順番を間違える（引き算は順序が大事）"
+    ],
+    "notes": [
+      "2. 変数の宣言",
+      "4. scanf と代入"
+    ],
+    "references": [
+      {
+        "filename": "k1-2b.c",
+        "code": "#include <stdio.h>\nint main(void)\n{\n\tint a, b , c , d;\n\t\n\tscanf(\"%d%d%d\", &a , &b , &c );\n\td = a - 9*b - 6*c ;\n\tprintf(\"クラスの人数    =%2d人\\n\", a);\n\tprintf(\"野球のチーム数  =%2dチーム\\n\", b);\n\tprintf(\"バレーのチーム数=%2dチーム\\n\", c);\n\tprintf(\"参加できない人数=%2d人\\n\", d);\n\treturn 0;\n}"
+      }
+    ]
+  },
+  {
+    "id": "k-1-2c",
+    "section": "1.2",
+    "kind": "task",
+    "label": "課題 1.2.c",
+    "title": "水槽とバケツ",
+    "statement": "1辺が a m の立方体である水槽に水が満タンに入れられている。今、1辺が b cm の立方体であるバケツに全て移したところ、何杯のバケツが満タンになったかを計算するプログラムを作りなさい。また、最後に移されたバケツには何 cc の水が入れられたかも同時に示しなさい。",
+    "inputSpec": "水槽の1辺 a（m・整数） バケツの1辺 b（cm・整数）",
+    "sampleInput": "1 30",
+    "expected": [
+      "水槽の1辺 = 1 m",
+      "水槽の容量 = 1000000 cc",
+      "バケツの1辺 = 30 cm",
+      "バケツの容量 = 27000 cc",
+      "バケツの個数 = 37 杯",
+      "最後のバケツの容量 = 1000 cc"
+    ],
+    "figure": null,
+    "hints": [
+      "1 m = 100 cm なので、水槽の1辺は cm にすると 100*a です。",
+      "1 cm³ = 1 cc です。水槽の容量 = (100*a)³ = 1000000 × a³。",
+      "杯数は割り算の整数部分、最後のバケツは「容量 − バケツの容量 × 杯数」で求められます。"
+    ],
+    "checkpoints": [
+      "m を cm に換算している（×100、体積では ×1000000）",
+      "水槽の容量とバケツの容量を正しく計算している",
+      "杯数を整数の割り算で求めている",
+      "最後のバケツの水量を余りとして計算している"
+    ],
+    "commonMistakes": [
+      "a を cm に直さずに a*a*a としてしまう",
+      "1 m = 100 cm を 10 cm と間違える",
+      "最後のバケツの水量を求めるのに、もう一度割り算をしてしまう（掛け算で戻す必要がある）"
+    ],
+    "notes": [
+      "2. 変数の宣言",
+      "4. scanf と代入"
+    ],
+    "references": [
+      {
+        "filename": "k1-2c.c",
+        "code": "#include <stdio.h>\nint main(void)\n{\n\tint a,b,c,d,e,f;//(順に水槽,バケツ,水槽の容量,バケツの容量,バケツの個数,最後のバケツの容量)\n\n\tscanf(\"%d%d\",&a,&b);\n\tc=a*a*a*1000000;//水槽の容量(100a^3)\n\td=b*b*b;//バケツの容量(b^3)\n\te=c/d;//バケツの個数(水槽の容量/バケツの容量)\n\tf=c-d*e;//最後のバケツの容量(水槽の容量-バケツの容量*バケツの個数)\n\n\tprintf(\"水槽の1辺の長さ　  =%7d m\\n\",a);\n\tprintf(\"水槽の容量　　　   =%7d cc\\n\",c);\n\tprintf(\"バケツの1辺の長さ  =%7d cm\\n\",b);\n\tprintf(\"バケツの容量　　   =%7d cc\\n\",d);\n\tprintf(\"バケツの個数　 　  =%7d 杯\\n\",e);\n\tprintf(\"最後のバケツの容量 =%7d cc\\n\",f);\n\treturn 0;\n}\n\t"
+      }
+    ]
+  },
+  {
+    "id": "ex-1-3",
+    "section": "1.3",
+    "kind": "example",
+    "label": "例題 1.3",
+    "title": "三角形の面積",
+    "statement": "三角形の高さと底辺の長さを入力し、三角形の面積を求めるプログラムを作りなさい。",
+    "inputSpec": "高さ 底辺の長さ（実数2つ）",
+    "sampleInput": "3 4",
+    "expected": [
+      "高さ = 3.0",
+      "底辺の長さ = 4.0",
+      "面積 = 6.0"
+    ],
+    "figure": null,
+    "hints": [
+      "実数は double 型で宣言し、scanf では %lf、printf では %f を使います。",
+      "面積 = 高さ × 底辺 ÷ 2 です。",
+      "÷2 は 2.0 で割るか、2 で割っても double の計算なら小数になります（式に double が入っているか確認）。"
+    ],
+    "checkpoints": [
+      "double で変数を宣言している",
+      "scanf で %lf を使っている",
+      "高さ × 底辺 / 2 で面積を計算している",
+      "面積（3と4なら6.0）を表示している"
+    ],
+    "commonMistakes": [
+      "int で受けてしまい小数が切り捨てられる",
+      "scanf で %f を使う（scanf の double は %lf）",
+      "printf の書式と引数の型が合っていない"
+    ],
+    "notes": [
+      "1. 実数（double）と書式指定子",
+      "2. 型変換（キャスト）"
+    ],
+    "references": [
+      {
+        "filename": "r1-3.c",
+        "code": "#include <stdio.h>\nint main(void)\n{\n\tdouble h,v,s;\n\n\tscanf(\"%lf%lf\",&h ,&v);\n\ts=h*v/2.00;\n\tprintf(\"高さ      =%5.1f\\n\",h);\n\tprintf(\"底辺の長さ=%5.1f\\n\",v);\n\tprintf(\"面積　    =%5.1f\\n\",s);\n\treturn 0;\n}"
+      }
+    ]
+  },
+  {
+    "id": "k-1-3a",
+    "section": "1.3",
+    "kind": "task",
+    "label": "課題 1.3.a",
+    "title": "台形の面積",
+    "statement": "台形の上底の長さと下底の長さおよび高さを入力し、台形の面積を求めるプログラムを作りなさい。",
+    "inputSpec": "上底 下底 高さ（実数3つ）",
+    "sampleInput": "4 6 5",
+    "expected": [
+      "上底 = 4.0",
+      "下底 = 6.0",
+      "高さ = 5.0",
+      "面積 = 25.0"
+    ],
+    "figure": null,
+    "hints": [
+      "台形の面積 = (上底 + 下底) × 高さ ÷ 2 です。",
+      "scanf(\"%lf%lf%lf\", &a, &b, &h); のようにまとめて読み取れます。",
+      "÷2 を 2.0 にすると「実数の割り算」であることが明確になります。"
+    ],
+    "checkpoints": [
+      "(上底 + 下底) を先に計算している",
+      "× 高さ ÷ 2 の順で正しく計算している",
+      "面積（4,6,5 なら25.0）を表示している"
+    ],
+    "commonMistakes": [
+      "上底 + 下底 × 高さ ÷ 2 と書いてしまい、掛け算が先に計算される",
+      "3つの入力の順番を間違える",
+      "%lf の数を入力量と合わせていない"
+    ],
+    "notes": [
+      "1. 実数（double）と書式指定子",
+      "2. 型変換（キャスト）"
+    ],
+    "references": [
+      {
+        "filename": "k1-3a.c",
+        "code": "#include <stdio.h>\nint main(void)\n{\n\tdouble a,b,h,s;//a=上底.b=下底,h=高さ,s=面積\n\n\tscanf(\"%lf%lf%lf\" ,&a ,&b ,&h);\n\n\ts=(a+b)*h/2.00;//台形の面積:(上底+下底)×高さ÷2\n\n\tprintf(\"上底＝%5.1f\\n\",a);\n\tprintf(\"下底＝%5.1f\\n\",b);\n\tprintf(\"高さ＝%5.1f\\n\",h);\n\tprintf(\"面積＝%5.1f\\n\",s);\n\n\treturn 0;\n}\n\t"
+      }
+    ]
+  },
+  {
+    "id": "k-1-3b",
+    "section": "1.3",
+    "kind": "task",
+    "label": "課題 1.3.b",
+    "title": "円筒の体積",
+    "statement": "底の半径と高さを入力し、円筒の体積を求めるプログラムを作りなさい。なお、円周率は 3.1416 とする。",
+    "inputSpec": "半径 高さ（実数2つ）",
+    "sampleInput": "2 10",
+    "expected": [
+      "半径 = 2.0",
+      "高さ = 10.0",
+      "体積 = 125.664"
+    ],
+    "figure": null,
+    "hints": [
+      "円筒の体積 = 半径 × 半径 × 円周率 × 高さ です。",
+      "円周率は問題文のとおり 3.1416 を使います。",
+      "printf の桁指定（例：%5.1f や %f）は好みでかまいません。"
+    ],
+    "checkpoints": [
+      "半径を2回掛けている（半径の2乗）",
+      "円周率 3.1416 を使っている",
+      "体積（2と10なら125.664）を表示している"
+    ],
+    "commonMistakes": [
+      "半径を1回しか掛けていない",
+      "直径と半径を混同している",
+      "3.14 など指定と違う円周率を使う"
+    ],
+    "notes": [
+      "1. 実数（double）と書式指定子"
+    ],
+    "references": [
+      {
+        "filename": "k1-3b.c",
+        "code": "#include <stdio.h>\nint main(void)\n{\n\tdouble r,h,v;//r＝半径,h＝高さ,v＝体積\n\n\tscanf(\"%lf%lf\" ,&r ,&h);\n\n\tv=r*r*3.1416*h;\n\n\tprintf(\"半径＝%5.1f\\n\",r);\n\tprintf(\"高さ＝%5.1f\\n\",h);\n\tprintf(\"体積＝%5.1f\\n\",v);\n\n\treturn 0;\n}"
+      }
+    ]
+  },
+  {
+    "id": "k-1-3c",
+    "section": "1.3",
+    "kind": "task",
+    "label": "課題 1.3.c",
+    "title": "1人当たりの林檎",
+    "statement": "林檎の個数を入力し、それを n 人で食べようとしたら1人当たり何個食べられるかを計算するプログラムを作りなさい。林檎の個数や人数は整数ですが、1人当たりの個数は実数になります。",
+    "inputSpec": "林檎の個数 人数（整数2つ）",
+    "sampleInput": "10 3",
+    "expected": [
+      "林檎の個数 = 10",
+      "人数 = 3",
+      "1人当たり = 3.333333"
+    ],
+    "figure": null,
+    "hints": [
+      "割り算の前に (double) で型を変換すると、小数まで計算されます。",
+      "例：b = (double)a / n;",
+      "整数同士の割り算は整数の答えになる、というのがこの課題のポイントです。"
+    ],
+    "checkpoints": [
+      "整数の割り算のままになっていない（キャスト or double で受けている）",
+      "1人当たりの個数が小数で表示される（10と3なら3.333…）",
+      "割る順序（個数 ÷ 人数）が正しい"
+    ],
+    "commonMistakes": [
+      "b = a / n; としてしまい、10÷3 が 3 になる",
+      "結果を int で受けてしまう",
+      "printf で %d を使ってしまう"
+    ],
+    "notes": [
+      "2. 型変換（キャスト）",
+      "2.3 暗黙の型変換"
+    ],
+    "references": [
+      {
+        "filename": "k1-3c.c",
+        "code": "#include <stdio.h>\nint main(void)\n{\n\tdouble a,n,b;//a＝林檎の個数,b＝人数,b＝1人当たりの個数\n\n\tscanf(\"%lf%lf\" ,&a ,&n);\n\n\tb=a/n;\n\n\tprintf(\"林檎の個数＝%3.1f\\n\",a);\n\tprintf(\"人数　　　＝%3.1f\\n\",n);\n\tprintf(\"1人当たり ＝%9.6f\\n\",b);\n\n\treturn 0;\n}"
+      }
+    ]
+  },
+  {
+    "id": "k-1-3d",
+    "section": "1.3",
+    "kind": "task",
+    "label": "課題 1.3.d",
+    "title": "図1.1の三角形の面積",
+    "statement": "図1.1の三角形の面積を求めるプログラムを作りなさい。ただし、y2 は入力しなくても良い。\n\n【図1.1の説明】3つの頂点は (x1, y1)、(x2, y2)、(x3, y3) で、y2 = y1 です。つまり底辺が y = y1 の水平な線分になります。\n※問題PDFに図が無いため、解答例（k1-3d.c）から仕様を起こして図を掲載しています。",
+    "inputSpec": "x1 x2 x3 y1 y3（実数5つ。y2 は y1 と同じなので入力しない）",
+    "sampleInput": "1 5 3 2 6",
+    "expected": [
+      "X1 = 1.0  Y1 = 2.0",
+      "X2 = 5.0  Y2 = 2.0",
+      "X3 = 3.0  Y3 = 6.0",
+      "面積 = 8.0"
+    ],
+    "figure": "triangle",
+    "hints": [
+      "底辺の長さ = x2 - x1 です。",
+      "高さ = y3 - y1 です。",
+      "面積 = 底辺 × 高さ ÷ 2。x3 の位置は面積に影響しません（頂点の水平位置が変わっても高さは同じ）。"
+    ],
+    "checkpoints": [
+      "底辺を x2 - x1 で求めている",
+      "高さを y3 - y1 で求めている",
+      "底辺 × 高さ ÷ 2 で面積を計算している",
+      "面積（サンプルなら8.0）を表示している"
+    ],
+    "commonMistakes": [
+      "高さを y3 - y2 として入力に無い y2 を要求してしまう",
+      "x3 を使って底辺を計算してしまう",
+      "3点から面積を出す公式を複雑にしすぎる"
+    ],
+    "notes": [
+      "1. 実数（double）と書式指定子"
+    ],
+    "references": [
+      {
+        "filename": "k1-3d.c",
+        "code": "#include <stdio.h>\nint main(void)\n{\n\tdouble a,b,c,d,e,v,h,s;//a＝x1,b＝x2,c＝x3,d=y1=y2,e＝y3,\n\n\tscanf(\"%lf%lf%lf%lf%lf\",&a ,&b ,&c ,&d ,&e);\n\n\tv=b-a;//底辺\n\th=e-d;//高さ\n\ts=v*h/2.00;\n\t\n\tprintf(\"X1＝%4.1f\",a);\n\tprintf(\"　　Y1＝%4.1f\\n\",d);//\\nを１つ抜かすことでX1とY1を同じ行で表示できる。\n\tprintf(\"X2＝%4.1f\",b);\n\tprintf(\"　　Y2＝%4.1f\\n\",d);\n\tprintf(\"X3＝%4.1f\",c);\n\tprintf(\"　　Y3＝%4.1f\\n\",e);\n\tprintf(\"面積＝%5.1f\\n\",s);\n\n\treturn 0;\n}"
+      }
+    ]
+  },
+  {
+    "id": "k-1-3e",
+    "section": "1.3",
+    "kind": "task",
+    "label": "課題 1.3.e",
+    "title": "並列接続の合成抵抗",
+    "statement": "並列接続（図1.2）の抵抗 R1, R2 の抵抗値を入力して、合成抵抗値を求めるプログラムを作りなさい。\n（公式：R = R1R2 / (R1 + R2)）\n\n※問題PDFに図が無いため、図はこちらで作成しています。",
+    "inputSpec": "R1 R2（実数2つ）",
+    "sampleInput": "2 3",
+    "expected": [
+      "R1 = 2.000",
+      "R2 = 3.000",
+      "合成抵抗 = 1.200"
+    ],
+    "figure": "parallel-resistor",
+    "hints": [
+      "和分の積（R1*R2 / (R1+R2)）と覚えると便利です。",
+      "分母は (R1 + R2) なので、カッコを忘れないようにしましょう。",
+      "R1 と R2 を入力する順番はどちらでも同じ結果になります。"
+    ],
+    "checkpoints": [
+      "分子が R1 * R2 になっている",
+      "分母が (R1 + R2) になっている",
+      "合成抵抗（2と3なら1.2）を表示している"
+    ],
+    "commonMistakes": [
+      "カッコを忘れて R1*R2/R1+R2 と書いてしまう",
+      "直列の公式 R1+R2 と混同する",
+      "足し算の結果で割るのを忘れる"
+    ],
+    "notes": [
+      "1. 実数（double）と書式指定子"
+    ],
+    "references": [
+      {
+        "filename": "k1-3e.c",
+        "code": "#include <stdio.h>\nint main(void)\n{\n\tdouble a ,b ,c;//a＝抵抗R1,b＝抵抗R2,c＝合成抵抗R\n\n\tscanf(\"%lf%lf\" ,&a ,&b);\n\n\tc=a*b/(a+b);//合成抵抗 和分の積\n\n\tprintf(\"R1　　　＝%7.3fΩ\\n\",a);\n\tprintf(\"R2　　　＝%7.3fΩ\\n\",b);\n\tprintf(\"合成抵抗＝%7.3fΩ\\n\",c);\n\n\treturn 0;\n}"
+      }
+    ]
+  },
+  {
+    "id": "ex-1-4",
+    "section": "1.4",
+    "kind": "example",
+    "label": "例題 1.4",
+    "title": "sin を計算する",
+    "statement": "x = 0, π/6, π/3, π/2, π, 2π に対し、sin x を計算するプログラムを作りなさい。なお、円周率は 3.1416 とする。",
+    "inputSpec": null,
+    "sampleInput": null,
+    "expected": [
+      "sin(0) = 0.000",
+      "sin(π/6) = 0.500",
+      "sin(π/3) = 0.866",
+      "sin(π/2) = 1.000",
+      "sin(π) = 0.000",
+      "sin(2π) = -0.000"
+    ],
+    "figure": null,
+    "hints": [
+      "数学の標準関数を使うには #include <math.h> が必要です。",
+      "円周率は double pi = 3.1416; のように変数にしておくと便利です。",
+      "sin はラジアンで計算します。π/6 は pi/6.0 と書きます。"
+    ],
+    "checkpoints": [
+      "#include <math.h> を書いている",
+      "円周率 3.1416 を使っている",
+      "6つの値すべてについて sin を計算・表示している",
+      "角度をラジアン（pi/6.0 など）で渡している"
+    ],
+    "commonMistakes": [
+      "math.h をインクルードし忘れる",
+      "pi/6 を整数の割り算にしてしまう（0 になる）",
+      "度（30°など）のまま sin に渡してしまう"
+    ],
+    "notes": [
+      "4. 標準関数（math.h）"
+    ],
+    "references": [
+      {
+        "filename": "r1-4.c",
+        "code": "#include <stdio.h>//printf関数を使うときに使う\n#include <math.h>//sin,cosなどの標準関数を使う時に使う\n\nint main(void)\n{\n\tdouble pi=3.1416;\n\tdouble y1 ,y2 ,y3;\n\n\ty1=sin(0.0);\n\ty2=sin(pi/6.0);\n\ty3=sin(pi/3.0);\n\tprintf(\"sin(0.0)   =%6.3f\\n\" ,y1);\n\tprintf(\"sin(pi/6.0)=%6.3f\\n\" ,y2);\n\tprintf(\"sin(pi/3.0)=%6.3f\\n\" ,y3);\n\tprintf(\"sin(pi/2.0)=%6.3f\\n\" ,sin(pi/2.0));\n\tprintf(\"sin(pi)    =%6.3f\\n\" ,sin(pi));\n\tprintf(\"sin(pi*2.0)=%6.3f\\n\" ,sin(2.0*pi));\n\treturn 0;\n}"
+      }
+    ]
+  },
+  {
+    "id": "k-1-4a",
+    "section": "1.4",
+    "kind": "task",
+    "label": "課題 1.4.a",
+    "title": "tan を計算する",
+    "statement": "x = -π/3, -π/6, 0, π/6, π/3 に対し、tan x を計算するプログラムを作りなさい。\n（ヒント：tan x = sin x / cos x）\n\n※円周率は 3.1416 とする。",
+    "inputSpec": null,
+    "sampleInput": null,
+    "expected": [
+      "tan(-π/3) = -1.732",
+      "tan(-π/6) = -0.577",
+      "tan(0) = 0.000",
+      "tan(π/6) = 0.577",
+      "tan(π/3) = 1.732"
+    ],
+    "figure": null,
+    "hints": [
+      "tan という関数が無い場合は、sin(x) / cos(x) で計算できます。",
+      "マイナスの角度は -pi/3.0 のように書きます。",
+      "cos(0) は 1 なので、0 のときは 0 になります。"
+    ],
+    "checkpoints": [
+      "5つの角度すべてを計算している",
+      "sin / cos で tan を求めている（または正しい方法で求めている）",
+      "値がおおよそ正しい（-1.732 〜 1.732）"
+    ],
+    "commonMistakes": [
+      "マイナスの角度をプラスにしてしまう",
+      "cos で割るのを忘れて sin だけを表示する",
+      "pi/3 を整数の割り算にしてしまう"
+    ],
+    "notes": [
+      "4. 標準関数（math.h）"
+    ],
+    "references": [
+      {
+        "filename": "k1-4a.c",
+        "code": "#include <stdio.h>\n#include <math.h>\n\nint main(void)\n{\n\tdouble pi=3.1416;\n\tdouble a ,b ,c ,d ,e;\n\n\ta=sin(-pi/3.0)/cos(-pi/3.0);//tan(-π/3)\n\tb=sin(-pi/6.0)/cos(-pi/6.0);//tan(-π/6)\n\tc=sin(0.0)/cos(0.0);//tan(0)\n\td=sin(pi/6.0)/cos(pi/6.0);//tan(π/6)\n\te=sin(pi/3.0)/cos(pi/3.0);//tan(π/3)\n\t\n\tprintf(\"tan(-pi/3.0)=%7.3f\\n\" ,a);\n\tprintf(\"tan(-pi/6.0)=%7.3f\\n\" ,b);\n\tprintf(\"tan(0.0)　　=%7.3f\\n\" ,c);\n\tprintf(\"tan(pi/6.0) =%7.3f\\n\" ,d);\n\tprintf(\"tan(pi/3.0) =%7.3f\\n\" ,e);\n\n\treturn 0;\n}"
+      }
+    ]
+  },
+  {
+    "id": "k-1-4b",
+    "section": "1.4",
+    "kind": "task",
+    "label": "課題 1.4.b",
+    "title": "平方根を計算する",
+    "statement": "x = 0.5, 2, 3, 5, 7 に対し、√x を計算するプログラムを作りなさい。",
+    "inputSpec": null,
+    "sampleInput": null,
+    "expected": [
+      "sqrt(0.5) = 0.707",
+      "sqrt(2) = 1.414",
+      "sqrt(3) = 1.732",
+      "sqrt(5) = 2.236",
+      "sqrt(7) = 2.646"
+    ],
+    "figure": null,
+    "hints": [
+      "平方根は sqrt(x) で求められます（math.h が必要）。",
+      "sqrt(2) のように整数を渡しても、自動で実数として計算されます。"
+    ],
+    "checkpoints": [
+      "sqrt を使っている（または同等の計算）",
+      "5つの値すべてを表示している",
+      "値がおおよそ正しい"
+    ],
+    "commonMistakes": [
+      "math.h のインクルード忘れ",
+      "sqrt を sqr と書いてしまう",
+      "表示する値の順番が問題と違う"
+    ],
+    "notes": [
+      "4. 標準関数（math.h）"
+    ],
+    "references": [
+      {
+        "filename": "k1-4b.c",
+        "code": "#include <stdio.h>\n#include <math.h>\n\nint main(void)\n{\n\tdouble a ,b ,c ,d ,e;\n\n\ta=sqrt(0.5);\n\tb=sqrt(2.0);\n\tc=sqrt(3.0);\n\td=sqrt(5.0);\n\te=sqrt(7.0);\n\n\tprintf(\"sqrt(0.5)=%6.3f\\n\" ,a);\n\tprintf(\"sqrt(2.0)=%6.3f\\n\" ,b);\n\tprintf(\"sqrt(3.0)=%6.3f\\n\" ,c);\n\tprintf(\"sqrt(5.0)=%6.3f\\n\" ,d);\n\tprintf(\"sqrt(7.0)=%6.3f\\n\" ,e);\n\treturn 0;\n}"
+      }
+    ]
+  },
+  {
+    "id": "k-1-4c",
+    "section": "1.4",
+    "kind": "task",
+    "label": "課題 1.4.c",
+    "title": "常用対数を計算する",
+    "statement": "x = 0.5, 1, 10, 100, 1000 に対し、log10 x（常用対数）を計算するプログラムを作りなさい。log10 x が標準関数として用意されているかどうか調べなさい。もし用意されていないか分からなければ、log10 x = log_e x / log_e 10 で計算しなさい。",
+    "inputSpec": null,
+    "sampleInput": null,
+    "expected": [
+      "log10(0.5) = -0.301",
+      "log10(1) = 0.000",
+      "log10(10) = 1.000",
+      "log10(100) = 2.000",
+      "log10(1000) = 3.000"
+    ],
+    "figure": null,
+    "hints": [
+      "C言語には log10(x) という関数があります（math.h）。",
+      "底の変換公式を使うなら log(x) / log(10) です。",
+      "log10(1) は 0、log10(10) は 1 になることを確かめましょう。"
+    ],
+    "checkpoints": [
+      "log10(x) または log(x)/log(10) を使っている",
+      "5つの値すべてを表示している",
+      "値がおおよそ正しい（-0.301 〜 3.000）"
+    ],
+    "commonMistakes": [
+      "自然対数 log(x) をそのまま常用対数として表示してしまう",
+      "log(10) を 10 で割ってしまう",
+      "math.h のインクルード忘れ"
+    ],
+    "notes": [
+      "4. 標準関数（math.h）"
+    ],
+    "references": [
+      {
+        "filename": "k1-4c.c",
+        "code": "#include <stdio.h>\n#include <math.h>\n\nint main(void)\n{\n\tdouble a ,b ,c ,d ,e;\n\n\ta=log(0.5)/log(10);//log10(x)=log(x)/log(10)←底の変換公式を用いた書き方をする。\n\tb=log(1.0)/log(10);\n\tc=log(10.0)/log(10);\n\td=log(100.0)/log(10);\n\te=log(1000.0)/log(10);\n\n\tprintf(\"log10(   0.5)=%6.3f\\n\" ,a);\n\tprintf(\"log10(   1.0)=%6.3f\\n\" ,b);\n\tprintf(\"log10(  10.0)=%6.3f\\n\" ,c);\n\tprintf(\"log10( 100.0)=%6.3f\\n\" ,d);\n\tprintf(\"log10(1000.0)=%6.3f\\n\" ,e);\n\n\treturn 0;\n}"
+      }
+    ]
+  },
+  {
+    "id": "k-1-4d",
+    "section": "1.4",
+    "kind": "task",
+    "label": "課題 1.4.d",
+    "title": "y = a√(1 − sin(2πx/a))",
+    "statement": "x = 0, a/4, a/2, 3a/4, a に対し、\ny = a√(1 − sin(2πx/a))\nの値を計算して表示するプログラムを作りなさい。a の値は実行時に入力するが、0 を入力しないように気をつけなさい。",
+    "inputSpec": "a（実数1つ。0 は入力しない）",
+    "sampleInput": "4.8",
+    "expected": [
+      "x = 0.0    y = 4.800",
+      "x = 1.2    y = 0.000",
+      "x = 2.4    y = 4.800",
+      "x = 3.6    y = 6.788",
+      "x = 4.8    y = 4.800"
+    ],
+    "figure": null,
+    "hints": [
+      "x は 0、a/4、a/2、3a/4、a の5つです。a が決まれば自動的に決まります。",
+      "y = a * sqrt(1 - sin(2 * pi * x / a)) の順に書きます。",
+      "a で割るので、a = 0 のときは計算できません（問題文の注意）。"
+    ],
+    "checkpoints": [
+      "x の5つの値を a から計算している",
+      "2πx/a を sin に渡している（ラジアン）",
+      "全体を a 倍している",
+      "5組の x と y を表示している"
+    ],
+    "commonMistakes": [
+      "x の値を 1.2, 2.4… と固定してしまい、a を変えても結果が変わらない",
+      "sqrt の中身を 1 - sin(...) ではなく 1 - sin にしてしまう",
+      "a で割る位置を間違える（2*pi*x/a）"
+    ],
+    "notes": [
+      "4. 標準関数（math.h）"
+    ],
+    "references": [
+      {
+        "filename": "k1-4d.c",
+        "code": "#include <stdio.h>\n#include <math.h>\n\nint main(void)\n{\n\tdouble pi=3.1416;\n\tdouble a ,b ,c ,d, e, f ,g ,h ,i ,j ,k;\n\n\tscanf(\"%lf\",&a);\n\n\tb=0.0;\n\tc=a*sqrt(1-sin(2*pi*b/a));\n\t\n\td=1.2;\n\te=a*sqrt(1-sin(2*pi*d/a));\n\t\n\tf=2.4;\n\tg=a*sqrt(1-sin(2*pi*f/a));\n\n\th=3.6;\n\ti=a*sqrt(1-sin(2*pi*h/a));\n\n\tj=4.8;\n\tk=a*sqrt(1-sin(2*pi*j/a));\n\t\n\tprintf(\"a=%4.1f\\n\" ,a);\n\tprintf(\"x=%4.1f\" ,b);\n\tprintf(\"　y=%6.3f\\n\" ,c);\n\tprintf(\"x=%4.1f\" ,d);\n\tprintf(\"　y=%6.3f\\n\" ,e);\n\tprintf(\"x=%4.1f\" ,f);\n\tprintf(\"　y=%6.3f\\n\" ,g);\n\tprintf(\"x=%4.1f\" ,h);\n\tprintf(\"　y=%6.3f\\n\" ,i);\n\tprintf(\"x=%4.1f\" ,j);\n\tprintf(\"　y=%6.3f\\n\" ,k);\n\n\treturn 0;\n}"
+      }
+    ]
+  }
+]

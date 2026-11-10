@@ -1,0 +1,161 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --background-rgb: 245 244 239;
+  --surface-rgb: 255 255 255;
+  --surface-2-rgb: 251 250 246;
+  --foreground-rgb: 29 35 43;
+  --muted-rgb: 107 114 128;
+  --muted-foreground-rgb: 107 114 128;
+  --border-rgb: 229 226 217;
+  --border-strong-rgb: 214 210 198;
+  --ring-rgb: 76 99 210;
+
+  --primary-rgb: 52 80 207;
+  --primary-hover-rgb: 42 67 180;
+  --primary-foreground-rgb: 255 255 255;
+  --primary-soft-rgb: 238 241 255;
+
+  --accent-rgb: 194 65 12;
+  --accent-soft-rgb: 255 242 234;
+  --accent-foreground-rgb: 255 255 255;
+
+  --success-rgb: 21 128 61;
+  --success-soft-rgb: 233 248 238;
+  --success-foreground-rgb: 255 255 255;
+
+  --warning-rgb: 180 83 9;
+  --warning-soft-rgb: 253 244 227;
+  --warning-foreground-rgb: 255 255 255;
+
+  --danger-rgb: 185 28 28;
+  --danger-soft-rgb: 253 236 235;
+  --danger-foreground-rgb: 255 255 255;
+
+  --code-background-rgb: 30 35 43;
+  --code-text-rgb: 230 233 239;
+
+  --background: rgb(var(--background-rgb));
+  --surface: rgb(var(--surface-rgb));
+  --foreground: rgb(var(--foreground-rgb));
+  --border: rgb(var(--border-rgb));
+  --primary: rgb(var(--primary-rgb));
+  --primary-soft: rgb(var(--primary-soft-rgb));
+  --ring: rgb(var(--ring-rgb));
+  --code-background: rgb(var(--code-background-rgb));
+  --code-text: rgb(var(--code-text-rgb));
+
+  --font-sans: "Hiragino Kaku Gothic ProN", "Hiragino Sans", "Noto Sans JP", "Yu Gothic UI",
+    "Meiryo", system-ui, -apple-system, sans-serif;
+  --font-mono: "SFMono-Regular", ui-monospace, Consolas, "Cascadia Mono", "Menlo", monospace;
+}
+
+* {
+  border-color: var(--border);
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  background-color: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-sans);
+  font-feature-settings: "palt" 1;
+  line-height: 1.75;
+  letter-spacing: 0.01em;
+}
+
+::selection {
+  background: #d9e0ff;
+}
+
+:focus-visible {
+  outline: 2px solid var(--ring);
+  outline-offset: 2px;
+}
+
+@layer components {
+  .container-page {
+    @apply mx-auto w-full max-w-content px-4 sm:px-6 lg:px-8;
+  }
+
+  .card {
+    @apply rounded-lg border border-border bg-surface shadow-sm;
+  }
+
+  .btn {
+    @apply inline-flex items-center justify-center gap-2 rounded-md px-4 py-2 text-sm font-semibold
+      transition-colors disabled:cursor-not-allowed disabled:opacity-50;
+  }
+
+  .btn-primary {
+    @apply btn bg-primary text-primary-foreground hover:bg-primary-hover;
+  }
+
+  .btn-secondary {
+    @apply btn border border-border-strong bg-surface text-foreground hover:bg-surface-2;
+  }
+
+  .btn-ghost {
+    @apply btn text-muted-foreground hover:bg-surface-2 hover:text-foreground;
+  }
+
+  .chip {
+    @apply inline-flex items-center gap-1 rounded-full border border-border px-2.5 py-0.5
+      text-xs font-medium text-muted-foreground;
+  }
+
+  .section-title {
+    @apply text-sm font-bold uppercase tracking-[0.14em] text-muted-foreground;
+  }
+
+  .prose-jp p {
+    @apply mb-3 leading-7;
+  }
+
+  .prose-jp ul {
+    @apply mb-3 list-disc space-y-1 pl-5;
+  }
+}
+
+/* CodeMirror の微調整 */
+.cm-editor {
+  height: 100%;
+  font-size: 14px;
+}
+
+.cm-editor.cm-focused {
+  outline: none;
+}
+
+.cm-scroller {
+  font-family: var(--font-mono) !important;
+  line-height: 1.65;
+}
+
+.cm-gutters {
+  border-right: 1px solid #2f3742 !important;
+  background: #191d24 !important;
+  color: #6b7686 !important;
+}
+
+.cm-activeLine {
+  background: rgba(255, 255, 255, 0.04) !important;
+}
+
+.cm-activeLineGutter {
+  background: rgba(255, 255, 255, 0.04) !important;
+  color: #cbd5e1 !important;
+}
+
+.cm-line-error {
+  background: rgba(220, 38, 38, 0.16) !important;
+}
+
+.cm-line-warn {
+  background: rgba(217, 119, 6, 0.14) !important;
+}
