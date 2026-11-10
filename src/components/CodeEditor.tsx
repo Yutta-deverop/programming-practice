@@ -28,6 +28,8 @@ import {
   Decoration,
   type DecorationSet,
   EditorView,
+  ViewPlugin,
+  WidgetType,
   drawSelection,
   highlightActiveLine,
   highlightActiveLineGutter,
@@ -35,6 +37,7 @@ import {
   keymap,
   lineNumbers,
   placeholder as placeholderExt,
+  type ViewUpdate,
 } from "@codemirror/view";
 import { tags } from "@lezer/highlight";
 
@@ -115,6 +118,76 @@ const highlightField = StateField.define<DecorationSet>({
 
 const readonlyCompartment = new Compartment();
 
+/**
+ * バックスラッシュを円マークで表示するためのウィジェット。
+ * 文書の中身は半角の \ のまま（コピー・保存・判定はすべて \ で行う）。
+ */
+class YenMarkWidget extends WidgetType {
+  toDOM() {
+    const element = document.createElement("span");
+    element.className = "cm-yen-mark";
+    element.textContent = "\u00A5";
+    return element;
+  }
+
+  eq() {
+    return true;
+  }
+}
+
+const yenReplacement = Decoration.replace({ widget: new YenMarkWidget() });
+
+function buildYenDecorations(view: EditorView): DecorationSet {
+  const marks: Range<Decoration>[] = [];
+  for (const { from, to } of view.visibleRanges) {
+    const text = view.state.doc.sliceString(from, to);
+    let index = text.indexOf("\\");
+    while (index !== -1) {
+      marks.push(yenReplacement.range(from + index, from + index + 1));
+      index = text.indexOf("\\", index + 1);
+    }
+  }
+  return Decoration.set(marks, true);
+}
+
+/** 表示している範囲の \ だけを順に円マークへ置き換える。 */
+const yenDisplay = ViewPlugin.fromClass(
+  class {
+    decorations: DecorationSet;
+
+    constructor(view: EditorView) {
+      this.decorations = buildYenDecorations(view);
+    }
+
+    update(update: ViewUpdate) {
+      if (update.docChanged || update.viewportChanged) {
+        this.decorations = buildYenDecorations(update.view);
+      }
+    }
+  },
+  { decorations: (plugin) => plugin.decorations },
+);
+
+/**
+ * 円マーク（¥ / ＼）を入力・貼り付けしたときは、C のバックスラッシュに戻す。
+ * 教科書のコードをそのまま貼っても、正しい半角コードとして扱える。
+ */
+const normalizeYenInput = EditorState.transactionFilter.of((tr) => {
+  if (!tr.docChanged) return tr;
+
+  const changes: { from: number; to: number; insert: string }[] = [];
+  tr.changes.iterChanges((_fromA, _toA, fromB, toB, inserted) => {
+    const text = inserted.toString();
+    const normalized = text.replace(/[\u00A5\uFF3C]/g, "\\");
+    if (normalized !== text) {
+      changes.push({ from: fromB, to: toB, insert: normalized });
+    }
+  });
+
+  if (changes.length === 0) return tr;
+  return [tr, { changes, sequential: true }];
+});
+
 export function CodeEditor({
   value,
   onChange,
@@ -147,6 +220,8 @@ export function CodeEditor({
         syntaxHighlighting(cHighlightStyle),
         highlightTheme,
         highlightField,
+        yenDisplay,
+        normalizeYenInput,
         EditorView.lineWrapping,
         placeholderExt(placeholder ?? ""),
         keymap.of([...defaultKeymap, ...historyKeymap, indentWithTab]),

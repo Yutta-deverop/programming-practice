@@ -137,6 +137,18 @@ body {
   line-height: 1.65;
 }
 
+/* バックスラッシュの代わりに表示している円マーク。
+   等幅フォントの 1 文字分に収めて、行の折り返し位置がずれないようにする。 */
+.cm-yen-mark {
+  font-family: var(--font-mono);
+  letter-spacing: 0;
+}
+
+.cm-placeholder {
+  color: #6b7686 !important;
+  font-style: normal !important;
+}
+
 .cm-gutters {
   border-right: 1px solid #2f3742 !important;
   background: #191d24 !important;

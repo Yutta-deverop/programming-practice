@@ -10,6 +10,7 @@ import type { Problem, Reference } from "@/data/problems";
 import type { JudgeResponse, JudgeResult } from "@/lib/judge-types";
 import { LINT_SEVERITY_LABEL, STARTER_CODE, lintCode } from "@/lib/lint";
 import { DEFAULT_JUDGE_MODEL, JUDGE_MODELS, isJudgeModel, type JudgeModel } from "@/lib/models";
+import { yenText } from "@/lib/yen";
 import {
   STATUS_LABEL,
   STATUS_STYLE,
@@ -45,7 +46,7 @@ export function PracticeClient({
   nextProblemId,
 }: PracticeClientProps) {
   const progress = useProgress();
-  const [code, setCode] = useState(STARTER_CODE);
+  const [code, setCode] = useState("");
   const [model, setModel] = useState<JudgeModel>(DEFAULT_JUDGE_MODEL);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [error, setError] = useState<string | null>(null);
@@ -80,7 +81,7 @@ export function PracticeClient({
   // 下書きと前回の判定を復元
   useEffect(() => {
     const draft = getDraft(problem.id);
-    if (draft) setCode(draft);
+    if (draft !== null) setCode(draft);
 
     const attempt = getProgress().attempts[problem.id];
     if (attempt) {
@@ -157,15 +158,26 @@ export function PracticeClient({
     }
   }
 
-  function resetCode() {
-    if (!window.confirm("エディタの内容をひな形に戻します。よろしいですか？")) return;
-    setCode(STARTER_CODE);
+  function resetEditorState(nextCode: string, confirmMessage: string) {
+    if (code.trim() && !window.confirm(confirmMessage)) return;
+    setCode(nextCode);
     clearDraft(problem.id);
     setResult(null);
     setJudgedCode(null);
     setJudgedModel(null);
     setFocusLine(null);
     setError(null);
+  }
+
+  function applyTemplate() {
+    resetEditorState(
+      STARTER_CODE,
+      "エディタの内容をひな形に置き換えます。よろしいですか？",
+    );
+  }
+
+  function clearCode() {
+    resetEditorState("", "エディタの内容を空にします。よろしいですか？");
   }
 
   const edited = judgedCode !== null && judgedCode !== code;
@@ -216,17 +228,17 @@ export function PracticeClient({
         <div className="min-w-0 space-y-5">
           <section className="card p-5">
             <h2 className="section-title">問題</h2>
-            <p className="mt-2 whitespace-pre-line text-sm leading-7">{problem.statement}</p>
+            <p className="mt-2 whitespace-pre-line text-sm leading-7">{yenText(problem.statement)}</p>
 
             {problem.inputSpec && (
               <div className="mt-4 grid gap-2 sm:grid-cols-2">
                 <div className="rounded-md border border-border bg-surface-2 p-3">
                   <p className="text-[11px] font-semibold text-muted-foreground">入力</p>
-                  <p className="mt-1 text-xs leading-6">{problem.inputSpec}</p>
+                  <p className="mt-1 text-xs leading-6">{yenText(problem.inputSpec)}</p>
                   {problem.sampleInput && (
                     <p className="mt-2 font-mono text-xs">
                       <span className="text-muted-foreground">入力例: </span>
-                      {problem.sampleInput}
+                      {yenText(problem.sampleInput)}
                     </p>
                   )}
                 </div>
@@ -235,7 +247,7 @@ export function PracticeClient({
                     期待される出力（入力例のとき）
                   </p>
                   <pre className="mt-1 overflow-x-auto whitespace-pre-wrap font-mono text-[11px] leading-5">
-                    {problem.expected.join("\n") || "（自由）"}
+                    {yenText(problem.expected.join("\n")) || "（自由）"}
                   </pre>
                 </div>
               </div>
@@ -245,7 +257,7 @@ export function PracticeClient({
               <div className="mt-4 rounded-md border border-border bg-surface-2 p-3">
                 <p className="text-[11px] font-semibold text-muted-foreground">表示例</p>
                 <pre className="mt-1 overflow-x-auto whitespace-pre-wrap font-mono text-[11px] leading-5">
-                  {problem.expected.join("\n")}
+                  {yenText(problem.expected.join("\n"))}
                 </pre>
               </div>
             )}
@@ -284,7 +296,7 @@ export function PracticeClient({
                   <span className="mt-0.5 shrink-0 font-mono text-xs text-primary">
                     {index + 1}.
                   </span>
-                  <span>{hint}</span>
+                  <span>{yenText(hint)}</span>
                 </li>
               ))}
             </ul>
@@ -309,7 +321,7 @@ export function PracticeClient({
                   {problem.checkpoints.map((point) => (
                     <li key={point} className="flex gap-1.5">
                       <span className="text-success">✓</span>
-                      <span>{point}</span>
+                      <span>{yenText(point)}</span>
                     </li>
                   ))}
                 </ul>
@@ -322,7 +334,7 @@ export function PracticeClient({
                   {problem.commonMistakes.map((mistake) => (
                     <li key={mistake} className="flex gap-1.5">
                       <span className="text-warning">△</span>
-                      <span>{mistake}</span>
+                      <span>{yenText(mistake)}</span>
                     </li>
                   ))}
                 </ul>
@@ -335,8 +347,11 @@ export function PracticeClient({
         <div className="min-w-0 self-start lg:sticky lg:top-20">
           <div className="card overflow-hidden">
             <div className="flex flex-wrap items-center justify-between gap-2 border-b border-border px-3 py-2">
-              <span className="font-mono text-[11px] text-muted-foreground">
-                main.c
+              <span
+                className="font-mono text-[11px] text-muted-foreground"
+                title="エディタの ¥ は、半角のバックスラッシュ（\）として保存されます"
+              >
+                main.c <span className="text-[10px]">（¥ = バックスラッシュ）</span>
               </span>
               <div className="flex items-center gap-1.5">
                 <label className="sr-only" htmlFor="judge-model">
@@ -356,8 +371,11 @@ export function PracticeClient({
                     </option>
                   ))}
                 </select>
-                <button type="button" onClick={resetCode} className="btn-ghost px-2 py-1 text-[11px]">
-                  ひな形に戻す
+                <button type="button" onClick={applyTemplate} className="btn-ghost px-2 py-1 text-[11px]">
+                  ひな形
+                </button>
+                <button type="button" onClick={clearCode} className="btn-ghost px-2 py-1 text-[11px]">
+                  空にする
                 </button>
               </div>
             </div>
@@ -368,6 +386,7 @@ export function PracticeClient({
                 onChange={setCode}
                 errorLines={highlight.errorLines}
                 warnLines={highlight.warnLines}
+                placeholder={'ここにコードを書きます（#include <stdio.h> から）'}
               />
             </div>
 

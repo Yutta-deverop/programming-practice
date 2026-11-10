@@ -5,6 +5,7 @@ import { useState } from "react";
 import type { Reference } from "@/data/problems";
 import type { JudgeIssue, JudgeResult, Verdict } from "@/lib/judge-types";
 import { VERDICT_LABEL } from "@/lib/judge-types";
+import { yenText } from "@/lib/yen";
 
 const VERDICT_STYLE: Record<Verdict, { box: string; badge: string; mark: string }> = {
   correct: {
@@ -96,7 +97,7 @@ function SolutionBlock({ references }: { references: Reference[] }) {
           <CopyButton text={current.code} />
         </div>
         <pre className="max-h-96 overflow-auto bg-[var(--code-background)] p-3 font-mono text-xs leading-6 text-[var(--code-text)]">
-          {current.code}
+          {yenText(current.code)}
         </pre>
       </div>
     </div>
@@ -132,7 +133,7 @@ export function JudgeResultPanel({
           </span>
         </div>
         {result.summary && (
-          <p className="mt-3 text-sm leading-7 text-foreground">{result.summary}</p>
+          <p className="mt-3 text-sm leading-7 text-foreground">{yenText(result.summary)}</p>
         )}
       </div>
 
@@ -143,7 +144,7 @@ export function JudgeResultPanel({
             {result.good_points.map((point, index) => (
               <li key={index} className="flex gap-2 text-sm leading-6">
                 <span className="mt-0.5 shrink-0 font-bold text-success">✓</span>
-                <span>{point}</span>
+                <span>{yenText(point)}</span>
               </li>
             ))}
           </ul>
@@ -178,15 +179,15 @@ export function JudgeResultPanel({
                       </button>
                     ) : null}
                   </div>
-                  <p className="mt-1.5 leading-6">{issue.message}</p>
+                  <p className="mt-1.5 leading-6">{yenText(issue.message)}</p>
                   {issue.code && (
                     <pre className="mt-1.5 overflow-x-auto rounded bg-surface-2 px-2 py-1 font-mono text-[11px] text-muted-foreground">
-                      {issue.code}
+                      {yenText(issue.code)}
                     </pre>
                   )}
                   {issue.fix_hint && (
                     <p className="mt-1.5 text-xs leading-6 text-primary">
-                      → {issue.fix_hint}
+                      → {yenText(issue.fix_hint)}
                     </p>
                   )}
                 </li>
@@ -216,7 +217,7 @@ export function JudgeResultPanel({
                 期待される出力
               </p>
               <pre className="overflow-x-auto px-3 py-2 font-mono text-[11px] leading-6">
-                {result.output_check.expected.join("\n") || "（なし）"}
+                {yenText(result.output_check.expected.join("\n")) || "（なし）"}
               </pre>
             </div>
             <div className="rounded-md border border-border bg-surface">
@@ -224,7 +225,7 @@ export function JudgeResultPanel({
                 あなたのコードの出力（AIの予測）
               </p>
               <pre className="overflow-x-auto px-3 py-2 font-mono text-[11px] leading-6">
-                {result.output_check.actual.join("\n") || "（出力なし）"}
+                {yenText(result.output_check.actual.join("\n")) || "（出力なし）"}
               </pre>
             </div>
           </div>
@@ -234,14 +235,14 @@ export function JudgeResultPanel({
       {result.hint && (
         <section className="rounded-md border border-primary/25 bg-primary-soft p-4">
           <h3 className="text-xs font-bold text-primary">次の一歩</h3>
-          <p className="mt-1 text-sm leading-7">{result.hint}</p>
+          <p className="mt-1 text-sm leading-7">{yenText(result.hint)}</p>
         </section>
       )}
 
       {result.model_answer_note && (
         <section className="text-xs leading-6 text-muted-foreground">
           <h3 className="section-title">模範解答との違い</h3>
-          <p className="mt-1">{result.model_answer_note}</p>
+          <p className="mt-1">{yenText(result.model_answer_note)}</p>
         </section>
       )}
 

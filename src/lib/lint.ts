@@ -160,7 +160,7 @@ export function lintCode(code: string, options: LintOptions): LintIssue[] {
         id: "EMPTY",
         severity: "info",
         line: 1,
-        message: "まだコードが空です。ひな形から書き始めましょう。",
+        message: "まだコードが空です。まずは #include <stdio.h> から書いてみましょう。",
       },
     ];
   }

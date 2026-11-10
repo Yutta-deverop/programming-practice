@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 
+import { yenText } from "@/lib/yen";
+
 export const metadata: Metadata = {
   title: "学習ノート | プログラミング練習",
   description:
@@ -28,7 +30,7 @@ function CodeBlock({ children, filename }: { children: string; filename?: string
         </div>
       )}
       <pre className="overflow-x-auto bg-[var(--code-background)] p-3 font-mono text-xs leading-6 text-[var(--code-text)]">
-        {children}
+        {yenText(children)}
       </pre>
     </div>
   );
